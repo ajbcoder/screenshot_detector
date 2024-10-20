@@ -1,21 +1,22 @@
 // lib/screenshot_detector.dart
 import 'package:flutter/services.dart';
 
-class ScreenshotDetect {
+class FlutterScreenshotDetect {
   static const EventChannel _eventChannel =
       EventChannel('com.ss.detect/events');
 
-  Stream<ScreenshotEvent>? _screenshotStream;
+  Stream<FlutterScreenshotEvent>? _screenshotStream;
 
   /// Represents a screenshot detection event
-  Stream<ScreenshotEvent> get onScreenshot {
-    _screenshotStream ??= _eventChannel.receiveBroadcastStream().map(
-        (event) => ScreenshotEvent.fromMap(event as Map<Object?, Object?>));
+  Stream<FlutterScreenshotEvent> get onScreenshot {
+    _screenshotStream ??= _eventChannel.receiveBroadcastStream().map((event) =>
+        FlutterScreenshotEvent.fromMap(event as Map<Object?, Object?>));
     return _screenshotStream!;
   }
 
   /// Starts listening for screenshot events
-  void startListening(Function(ScreenshotEvent event) onScreenshotTaken) {
+  void startListening(
+      Function(FlutterScreenshotEvent event) onScreenshotTaken) {
     onScreenshot.listen(onScreenshotTaken);
   }
 
@@ -26,7 +27,7 @@ class ScreenshotDetect {
 }
 
 /// Represents a screenshot detection event with additional metadata
-class ScreenshotEvent {
+class FlutterScreenshotEvent {
   /// The method used to detect the screenshot
   final String method;
 
@@ -36,14 +37,14 @@ class ScreenshotEvent {
   /// Path to the screenshot file (only available for content observer method)
   final String? path;
 
-  ScreenshotEvent({
+  FlutterScreenshotEvent({
     required this.method,
     required this.timestamp,
     this.path,
   });
 
-  factory ScreenshotEvent.fromMap(Map<Object?, Object?> map) {
-    return ScreenshotEvent(
+  factory FlutterScreenshotEvent.fromMap(Map<Object?, Object?> map) {
+    return FlutterScreenshotEvent(
       method: map['method'] as String,
       timestamp: DateTime.fromMicrosecondsSinceEpoch(map['timestamp'] as int),
       path: map['path'] as String?,
@@ -52,6 +53,6 @@ class ScreenshotEvent {
 
   @override
   String toString() {
-    return 'ScreenshotEvent(method: $method, timestamp: $timestamp, path: $path)';
+    return 'FlutterScreenshotEvent(method: $method, timestamp: $timestamp, path: $path)';
   }
 }

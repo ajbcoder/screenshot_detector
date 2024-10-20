@@ -1,6 +1,6 @@
 // example/lib/main.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_screenshot_detect/screenshot_detect.dart';
+import 'package:flutter_screenshot_detect/flutter_screenshot_detect.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,8 +23,8 @@ class ScreenshotDetectDemo extends StatefulWidget {
 }
 
 class _ScreenshotDetectDemoState extends State<ScreenshotDetectDemo> {
-  final ScreenshotDetect _detector = ScreenshotDetect();
-  final List<ScreenshotEvent> _events = [];
+  final FlutterScreenshotDetect _detector = FlutterScreenshotDetect();
+  final List<FlutterScreenshotEvent> _events = [];
 
   @override
   void initState() {

@@ -32,14 +32,14 @@ flutter pub get
 1. Import the plugin in your Dart code:
 
 ```dart
-import 'package:flutter_screenshot_detect/screenshot_detect.dart';
+import 'package:flutter_screenshot_detect/flutter_screenshot_detect.dart';
 ```
 
 2. Initialize the plugin and listen for screenshot events:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter_screenshot_detect/screenshot_detect.dart';
+import 'package:flutter_screenshot_detect/flutter_screenshot_detect.dart';
 
 void main() {
   runApp(MyApp());
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     // Listen for screenshot detection events
-    ScreenshotDetect.startListening().listen((event) {
+    FlutterScreenshotDetect.startListening().listen((event) {
       setState(() {
         _status = 'Screenshot detected at \${event['timestamp']}';
       });
@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-    ScreenshotDetect.stopListening();
+    FlutterScreenshotDetect.stopListening();
     super.dispose();
   }
 

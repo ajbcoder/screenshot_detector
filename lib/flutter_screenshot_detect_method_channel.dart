@@ -1,7 +1,8 @@
 import 'package:flutter/services.dart';
-import 'screenshot_detect_platform_interface.dart';
+import 'flutter_screenshot_detect_platform_interface.dart';
 
-class MethodChannelScreenshotDetect extends ScreenshotDetectPlatform {
+class MethodChannelFlutterScreenshotDetect
+    extends FlutterScreenshotDetectPlatform {
   static const EventChannel _eventChannel =
       EventChannel('com.ss.detect/events');
 
