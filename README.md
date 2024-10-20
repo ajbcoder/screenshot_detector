@@ -32,14 +32,14 @@ flutter pub get
 1. Import the plugin in your Dart code:
 
 ```dart
-import 'package:screenshot_detect/screenshot_detect.dart';
+import 'package:flutter_screenshot_detect/screenshot_detect.dart';
 ```
 
 2. Initialize the plugin and listen for screenshot events:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:screenshot_detect/screenshot_detect.dart';
+import 'package:flutter_screenshot_detect/screenshot_detect.dart';
 
 void main() {
   runApp(MyApp());
