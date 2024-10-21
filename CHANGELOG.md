@@ -1,3 +1,7 @@
+## 0.1.5
+* Modify Native android screenshot path check logic
+* Update Readme
+
 ## 0.1.4
 
 * Update Description, Update constraint on plugin_platform_interface to 2.1.8

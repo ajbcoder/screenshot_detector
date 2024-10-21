@@ -119,6 +119,6 @@ class FlutterScreenshotDetectPlugin: FlutterPlugin, EventChannel.StreamHandler, 
     }
 
     private fun isScreenshotPath(path: String?): Boolean {
-        return true
+        return path.toString().contains(MediaStore.Images.Media.EXTERNAL_CONTENT_URI.toString())
     }
 }

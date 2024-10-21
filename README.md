@@ -52,22 +52,21 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _status = 'Waiting for screenshot...';
+  final FlutterScreenshotDetect _detector = FlutterScreenshotDetect();
 
   @override
   void initState() {
     super.initState();
 
     // Listen for screenshot detection events
-    FlutterScreenshotDetect.startListening().listen((event) {
-      setState(() {
-        _status = 'Screenshot detected at \${event['timestamp']}';
-      });
+    _detector.startListening((event) {
+      print('Screenshot Taken');
     });
   }
 
   @override
   void dispose() {
-    FlutterScreenshotDetect.stopListening();
+    _detector.stopListening();
     super.dispose();
   }
 
@@ -94,7 +93,7 @@ class _MyAppState extends State<MyApp> {
 Starts listening for screenshot capture events.
 
 ```dart
-Stream<Map<String, dynamic>> startListening()
+startListening()
 ```
 
 This method returns a stream of events whenever a screenshot is detected. The event contains the following information:
