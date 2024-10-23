@@ -36,6 +36,12 @@ public class FlutterScreenshotDetectPlugin: NSObject, FlutterPlugin, FlutterStre
     }
     
     @objc private func onScreenshotCaptured() {
-        eventSink?(nil)
+        let eventData: [String: Any] = [
+            "method": "NA",
+            "timestamp": Int(Date().timeIntervalSince1970 * 1_000_000), // Actual timestamp in microseconds
+            "path": "NA"
+        ]
+        
+        eventSink?(eventData)
     }
 }
