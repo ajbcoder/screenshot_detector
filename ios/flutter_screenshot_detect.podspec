@@ -3,7 +3,7 @@
 # Run `pod lib lint screenshot_detector.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'screenshot_detector'
+  s.name             = 'flutter_screenshot_detect'
   s.version          = '0.0.1'
   s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC
