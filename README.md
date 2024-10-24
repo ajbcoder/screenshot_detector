@@ -18,7 +18,7 @@ Add this plugin to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_screenshot_detect: ^0.1.2
+  flutter_screenshot_detect: ^0.1.6
 ```
 
 Run the following command to install the package:

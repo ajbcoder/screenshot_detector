@@ -1,6 +1,6 @@
 name: flutter_screenshot_detect
 description: "A Flutter plugin to detect screenshots on Android and iOS devices. It provides real-time detection using content observers for older Android versions and screen capture callbacks for Android 14+. Supports all Android versions."
-version: 0.1.5
+version: 0.1.6
 repository: https://github.com/Umar1312/screenshot_detector
 
 environment:

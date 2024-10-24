@@ -1,3 +1,6 @@
+## 0.1.6
+* Fix null being passed into event sink from ios screenshot_detector class
+
 ## 0.1.5
 * Modify Native android screenshot path check logic
 * Update Readme
@@ -13,6 +16,7 @@
 ## 0.1.3
 
 * Readme Update
+simplest
 
 ## 0.1.1
 
