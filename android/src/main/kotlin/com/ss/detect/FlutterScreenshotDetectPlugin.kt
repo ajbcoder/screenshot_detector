@@ -89,14 +89,28 @@ class FlutterScreenshotDetectPlugin: FlutterPlugin, EventChannel.StreamHandler, 
         screenshotObserver = object : ContentObserver(Handler(Looper.getMainLooper())) {
             override fun onChange(selfChange: Boolean, uri: Uri?) {
                 super.onChange(selfChange, uri)
+                // uri?.let {
+                //     //Log.d("INFO","SS CAPTURED"+it.path)
+                //     Log.d("INFO", "ContentObserver triggered: URI: ${it}")
+                //     if (isScreenshotPath(it.path)) {
+                //         eventSink?.success(mapOf(
+                //             "method" to "content_observer",
+                //             "timestamp" to System.currentTimeMillis(),
+                //             "path" to it.path
+                //         ))
+                //     }
+                // }
                 uri?.let {
-                    //Log.d("INFO","SS CAPTURED"+it.path)
                     Log.d("INFO", "ContentObserver triggered: URI: ${it}")
-                    if (isScreenshotPath(it.path)) {
+            
+                    // Resolve the actual file path
+                    val filePath = getFilePathFromContentUri(it)
+                    if (filePath != null && isScreenshotPath(filePath)) {
+                        Log.d("INFO", "Screenshot detected: $filePath")
                         eventSink?.success(mapOf(
                             "method" to "content_observer",
                             "timestamp" to System.currentTimeMillis(),
-                            "path" to it.path
+                            "path" to filePath
                         ))
                     }
                 }
@@ -126,5 +140,17 @@ class FlutterScreenshotDetectPlugin: FlutterPlugin, EventChannel.StreamHandler, 
     private fun isScreenshotPath(path: String?): Boolean {
         return path != null && (path.contains("/Screenshots") || path.contains("/DCIM/Screenshots"))
     }
+
+    private fun getFilePathFromContentUri(uri: Uri): String? {
+        val projection = arrayOf(MediaStore.Images.Media.DATA)
+        contentResolver?.query(uri, projection, null, null, null)?.use { cursor ->
+            if (cursor.moveToFirst()) {
+                val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                return cursor.getString(columnIndex)
+            }
+        }
+        return null
+    }
+    
     
 }
