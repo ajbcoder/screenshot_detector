@@ -90,7 +90,8 @@ class FlutterScreenshotDetectPlugin: FlutterPlugin, EventChannel.StreamHandler, 
             override fun onChange(selfChange: Boolean, uri: Uri?) {
                 super.onChange(selfChange, uri)
                 uri?.let {
-                    Log.d("INFO","SS CAPTURED"+it.path)
+                    //Log.d("INFO","SS CAPTURED"+it.path)
+                    Log.d("INFO", "ContentObserver triggered: URI: ${it}")
                     if (isScreenshotPath(it.path)) {
                         eventSink?.success(mapOf(
                             "method" to "content_observer",
@@ -118,7 +119,12 @@ class FlutterScreenshotDetectPlugin: FlutterPlugin, EventChannel.StreamHandler, 
         screenshotObserver = null
     }
 
+    // private fun isScreenshotPath(path: String?): Boolean {
+    //     return path.toString().contains(MediaStore.Images.Media.EXTERNAL_CONTENT_URI.toString())
+    // }
+
     private fun isScreenshotPath(path: String?): Boolean {
-        return path.toString().contains(MediaStore.Images.Media.EXTERNAL_CONTENT_URI.toString())
+        return path != null && (path.contains("/Screenshots") || path.contains("/DCIM/Screenshots"))
     }
+    
 }
